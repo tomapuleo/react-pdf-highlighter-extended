@@ -173,7 +173,7 @@ export interface PdfHighlighterProps {
 }
 
 export type PdfHighlighterHandle = {
-  open: () => void;
+  applySearchTermHighlights: () => void;
 };
 
 /**
@@ -599,7 +599,7 @@ export const PdfHighlighter = forwardRef<
   utilsRef(pdfHighlighterUtils);
 
   useImperativeHandle(ref, () => ({
-    open() {
+    applySearchTermHighlights() {
       fixHilightingSearchTerms();
     },
   }));

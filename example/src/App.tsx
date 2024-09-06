@@ -17,7 +17,6 @@ import {
 import "./style/App.css";
 import { testHighlights as _testHighlights } from "./test-highlights";
 import { CommentedHighlight } from "./types";
-import { PdfHighlighterHandle } from "src/components/PdfHighlighter";
 
 const TEST_HIGHLIGHTS = _testHighlights;
 const PRIMARY_PDF_URL = "https://arxiv.org/pdf/2203.11115";
@@ -45,7 +44,7 @@ const App = () => {
   );
   const [searchString, setSearchString] = useState("");
   const [searchTerms, setSearchTerms] = useState<string[]>([]);
-  const pdfHighlighterRef = useRef<PdfHighlighterHandle>(null);
+  const [wholeWordsOnly, setWholeWordsOnly] = useState(false);
 
   // Refs for PdfHighlighter utilities
   const highlighterUtilsRef = useRef<PdfHighlighterUtils>();
@@ -172,14 +171,26 @@ const App = () => {
           flexGrow: 1,
         }}
       >
-        <div>
+        <div
+          style={{
+            margin: 5,
+          }}
+        >
+          Search Terms:{" "}
           <input
             value={searchString}
             onChange={(e) => {
               setSearchString(e.target.value);
               setSearchTerms(e.target.value.split(" "));
             }}
-          ></input>
+          ></input>{" "}
+          <label>
+            Whole words only
+            <input
+              type="checkbox"
+              onChange={(e) => setWholeWordsOnly(e.target.checked)}
+            ></input>
+          </label>
         </div>
         <Toolbar setPdfScaleValue={(value) => setPdfScaleValue(value)} />
         <PdfLoader document={url}>
@@ -200,7 +211,7 @@ const App = () => {
               //TODO: for testing
               searchOptions={{
                 searchTerms,
-                wholeWordsOnly: true,
+                wholeWordsOnly,
               }}
             >
               <HighlightContainer
