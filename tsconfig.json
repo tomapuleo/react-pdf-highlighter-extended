@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "./dist/esm",
+    "isolatedModules": true,
+    "declaration": true,
+    "skipLibCheck": true // Fixes WeakMap identical type parameter bugs on build
+  },
+  "typedocOptions": {
+    "entryPoints": ["./src/index.ts"],
+    "out": "public/docs",
+    "plugin": ["typedoc-theme-category-nav"],
+    "theme": "navigation"
+  },
+  "include": ["./src"]
+}
