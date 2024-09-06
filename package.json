@@ -1,17 +1,13 @@
 {
-  "name": "react-pdf-highlighter-extended",
+  "name": "tomapuleo/react-pdf-highlighter-extended",
   "version": "8.0.0",
-  "description": "Set of modern React components for PDF highlighting",
-  "author": "Daniel Arnould <daniel.s.arnould@gmail.com>",
+  "description": "Expanding on react-pdf-highlighter-extended from Daniel Arnould's version 8.0.0: Set of modern React components for PDF highlighting",
+  "author": "Tom A. Puleo <tapuleo@gmail.com>",
   "license": "MIT",
   "contributors": [
     {
-      "name": "Daniel Arnould",
-      "email": "daniel.s.arnould@gmail.com"
-    },
-    {
-      "name": "Artem Tyurin",
-      "email": "artem.tyurin@gmail.com"
+      "name": "Tom A. Puleo",
+      "email": "tapuleo@gmail.com"
     }
   ],
   "keywords": [
