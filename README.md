@@ -7,6 +7,22 @@
 
 This originally started as a fork of [`react-pdf-highlighter`](https://github.com/agentcooper/react-pdf-highlighter) but so much has been refactored and redesigned that it would be a burden to pull it to the original repo. Some of these changes include: addition of `HighlightContext`, `PdfHighlighterContext`, and `MonitoredHighlightContainer`; zoom support; exposed styling on all components; and numerous bugfixes. Efforts will be made to try to ensure feature parity with the original repo, but there are no guarantees that syntax and usage will be the same.
 
+I have modified it slightly to allow for keyword search highlighting.
+There's a new prop on PdfHighlighter that looks like this:
+
+```
+  /**
+   * Search terms will be highlighted immediately after the text layer for a page
+   * is rendered
+   */
+  searchOptions?: {
+    searchTerms?: string[];
+    wholeWordsOnly?: boolean;
+  };
+```
+
+When either propety changes, the loaded PDF pages will get their search term highlighting updated
+
 ## Table of Contents
 
 - [Documentation](#documentation)
