@@ -29,7 +29,7 @@ const Sidebar = ({
         </h2>
 
         <p style={{ fontSize: "0.7rem" }}>
-          <a href="https://github.com/DanielArnould/react-pdf-highlighter-extended">
+          <a href="https://github.com/tomapuleo/react-pdf-highlighter-extended">
             Open in GitHub
           </a>
         </p>

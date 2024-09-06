@@ -47,10 +47,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanielArnould/react-pdf-highlighter.git"
+    "url": "git+https://github.com/tomapuleo/react-pdf-highlighter.git"
   },
   "bugs": {
-    "url": "https://github.com/DanielArnould/react-pdf-highlighter-extended/issues"
+    "url": "https://github.com/tomapuleo/react-pdf-highlighter-extended/issues"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.9",
