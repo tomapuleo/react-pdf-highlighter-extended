@@ -1,6 +1,6 @@
 {
   "name": "react-pdf-highlighter-extended-with-search",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Expanding on react-pdf-highlighter-extended from Daniel Arnould's version 8.0.0: Set of modern React components for PDF highlighting",
   "author": "Tom A. Puleo <tapuleo@gmail.com>",
   "license": "MIT",

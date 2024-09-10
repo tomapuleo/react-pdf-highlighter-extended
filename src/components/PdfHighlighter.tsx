@@ -267,12 +267,9 @@ export const PdfHighlighter = forwardRef<
       searchOptions.searchTerms!.forEach((term) => {
         // if the text contains the search term
         if (html.toLowerCase().indexOf(term.toLowerCase()) > -1) {
-          // finding a match only if it's not in a tag name, so don't find "span" if it's a tag, for example, but do find it in actual text content
-          // const rgx = new RegExp(`(?<!<[^>]*)(${term})`, "gi");
-
           const rgx = searchOptions.wholeWordsOnly
-            ? new RegExp(`(?<!<[^>]*)(\\b${term}\\b)`, "gi")
-            : new RegExp(`(?<!<[^>]*)(${term})`, "gi");
+            ? new RegExp(`(\\b${term}\\b)`, "gi")
+            : new RegExp(`(${term})`, "gi");
 
           html = html.replace(
             rgx,
@@ -352,7 +349,6 @@ export const PdfHighlighter = forwardRef<
   const handleScroll = () => {
     onScrollAway && onScrollAway();
     scrolledToHighlightIdRef.current = null;
-    renderHighlightLayers();
   };
 
   const debouncedHandleSelectionChange = debounce(() => {

@@ -208,7 +208,6 @@ const App = () => {
               style={{
                 height: "calc(100% - 41px)",
               }}
-              //TODO: for testing
               searchOptions={{
                 searchTerms,
                 wholeWordsOnly,
