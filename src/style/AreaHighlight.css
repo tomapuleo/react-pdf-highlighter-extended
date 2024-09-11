@@ -5,6 +5,6 @@
   transition: background 0.3s;
 }
 
-.AreaHighlight--scrolledTo .AreaHighlight__part {
+/* .AreaHighlight--scrolledTo .AreaHighlight__part {
   background: #ff4141;
-}
+} */
