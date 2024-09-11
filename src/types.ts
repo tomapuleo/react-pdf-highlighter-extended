@@ -91,6 +91,7 @@ export interface Highlight {
   id: string;
   content: Content;
   position: ScaledPosition;
+  isBookmark?: boolean;
 }
 
 /**

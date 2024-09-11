@@ -87,7 +87,10 @@ const App = () => {
 
   const addHighlight = (highlight: GhostHighlight, comment: string) => {
     console.log("Saving highlight", highlight);
-    setHighlights([{ ...highlight, comment, id: getNextId() }, ...highlights]);
+    setHighlights([
+      { ...highlight, comment, id: getNextId(), isBookmark: true },
+      ...highlights,
+    ]);
   };
 
   const deleteHighlight = (highlight: ViewportHighlight | Highlight) => {
