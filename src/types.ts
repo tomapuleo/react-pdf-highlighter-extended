@@ -92,6 +92,7 @@ export interface Highlight {
   content: Content;
   position: ScaledPosition;
   isBookmark?: boolean;
+  customId?: string | number;
 }
 
 /**
