@@ -21,7 +21,10 @@ There's a new prop on PdfHighlighter that looks like this:
   };
 ```
 
-When either propety changes, the loaded PDF pages will get their search term highlighting updated
+When either property changes, the loaded PDF pages will get their search term highlighting updated
+
+9.18.2024
+I added onViewerReady() param to PdfHighlighter so consumers can be notified
 
 ## Table of Contents
 

@@ -170,6 +170,8 @@ export interface PdfHighlighterProps {
     searchTerms?: string[];
     wholeWordsOnly?: boolean;
   };
+
+  onViewerReady?: () => void;
 }
 
 export type PdfHighlighterHandle = {
@@ -206,6 +208,7 @@ export const PdfHighlighter = forwardRef<
     utilsRef,
     style,
     searchOptions,
+    onViewerReady,
   }: PdfHighlighterProps,
   ref,
 ) {
@@ -308,6 +311,9 @@ export const PdfHighlighter = forwardRef<
       linkServiceRef.current.setDocument(pdfDocument);
       linkServiceRef.current.setViewer(viewerRef.current);
       setIsViewerReady(true);
+      if (onViewerReady) {
+        onViewerReady();
+      }
     }, 100);
 
     debouncedDocumentInit();
