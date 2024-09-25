@@ -45,6 +45,7 @@ const App = () => {
   const [searchString, setSearchString] = useState("");
   const [searchTerms, setSearchTerms] = useState<string[]>([]);
   const [wholeWordsOnly, setWholeWordsOnly] = useState(false);
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
 
   // Refs for PdfHighlighter utilities
   const highlighterUtilsRef = useRef<PdfHighlighterUtils>();
@@ -195,7 +196,17 @@ const App = () => {
             ></input>
           </label>
         </div>
-        <Toolbar setPdfScaleValue={(value) => setPdfScaleValue(value)} />
+        <Toolbar
+          setPdfScaleValue={(value) => setPdfScaleValue(value)}
+          currentPageNumber={currentPageNumber}
+          setCurrentPageNumber={(pageNumber) => {
+            const viewer = highlighterUtilsRef.current?.getViewer();
+            if (viewer) {
+              viewer.currentPageNumber = pageNumber;
+            }
+          }}
+          totalPages={highlighterUtilsRef.current?.getViewer()?.pagesCount || 0}
+        />
         <PdfLoader document={url}>
           {(pdfDocument) => (
             <PdfHighlighter
@@ -215,6 +226,7 @@ const App = () => {
                 searchTerms,
                 wholeWordsOnly,
               }}
+              onPageChange={setCurrentPageNumber}
             >
               <HighlightContainer
                 editHighlight={editHighlight}

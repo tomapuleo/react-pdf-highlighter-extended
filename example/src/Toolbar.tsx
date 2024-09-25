@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import "./style/Toolbar.css";
 
 interface ToolbarProps {
   setPdfScaleValue: (value: number) => void;
+  currentPageNumber: number;
+  setCurrentPageNumber: (pageNumber: number) => void;
+  totalPages: number;
 }
 
-const Toolbar = ({ setPdfScaleValue }: ToolbarProps) => {
+const Toolbar = ({
+  setPdfScaleValue,
+  currentPageNumber,
+  setCurrentPageNumber,
+  totalPages,
+}: ToolbarProps) => {
+  const currentPageNumberRef = useRef<HTMLInputElement>(null);
   const [zoom, setZoom] = useState<number | null>(null);
 
   const zoomIn = () => {
@@ -33,12 +42,30 @@ const Toolbar = ({ setPdfScaleValue }: ToolbarProps) => {
     }
   };
 
+  useEffect(() => {
+    if (currentPageNumberRef.current) {
+      currentPageNumberRef.current.value = currentPageNumber.toString();
+    }
+  });
+
   return (
     <div className="Toolbar">
       <div className="ZoomControls">
         <button onClick={zoomIn}>+</button>
         <button onClick={zoomOut}>-</button>
         {zoom ? `${(zoom * 100).toFixed(0)}%` : "Auto"}
+      </div>
+      <div>
+        Page{" "}
+        <input
+          ref={currentPageNumberRef}
+          //TODO:make sure it's a number
+          onChange={(e) => {
+            debugger;
+            setCurrentPageNumber(parseInt(e.target.value));
+          }}
+        />{" "}
+        of {totalPages}
       </div>
     </div>
   );

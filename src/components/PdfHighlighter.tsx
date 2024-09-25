@@ -171,7 +171,15 @@ export interface PdfHighlighterProps {
     wholeWordsOnly?: boolean;
   };
 
+  /**
+   * Event fires when the viewer is ready
+   */
   onViewerReady?: () => void;
+
+  /**
+   * used to report the current page number to the caller
+   */
+  onPageChange?: (pageNumber: number) => void;
 }
 
 export type PdfHighlighterHandle = {
@@ -209,6 +217,7 @@ export const PdfHighlighter = forwardRef<
     style,
     searchOptions,
     onViewerReady,
+    onPageChange,
   }: PdfHighlighterProps,
   ref,
 ) {
@@ -336,6 +345,14 @@ export const PdfHighlighter = forwardRef<
     eventBusRef.current.on("pagesinit", handleScaleValue);
     doc.addEventListener("selectionchange", debouncedHandleSelectionChange);
     doc.addEventListener("keydown", handleKeyDown);
+    containerNodeRef.current.addEventListener(
+      "scroll",
+      debounce(() => {
+        if (viewerRef.current && onPageChange) {
+          onPageChange(viewerRef.current.currentPageNumber);
+        }
+      }, 100),
+    );
 
     renderHighlightLayers();
 
@@ -347,6 +364,7 @@ export const PdfHighlighter = forwardRef<
         debouncedHandleSelectionChange,
       );
       doc.removeEventListener("keydown", handleKeyDown);
+      containerNodeRef.current?.removeEventListener("scroll", () => {});
       resizeObserverRef.current?.disconnect();
     };
   }, [selectionTip, highlights, onSelectionFinished]);
@@ -437,6 +455,10 @@ export const PdfHighlighter = forwardRef<
   const handleScaleValue = () => {
     if (viewerRef.current) {
       viewerRef.current.currentScaleValue = pdfScaleValue.toString();
+
+      if (onPageChange) {
+        onPageChange(viewerRef.current.currentPageNumber);
+      }
     }
   };
 
