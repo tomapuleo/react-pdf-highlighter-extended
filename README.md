@@ -10,6 +10,8 @@ This originally started as a fork of [`react-pdf-highlighter`](https://github.co
 I have modified it slightly to allow for keyword search highlighting.
 There's a new prop on PdfHighlighter that looks like this:
 
+I added Page x of y
+
 ```
   /**
    * Search terms will be highlighted immediately after the text layer for a page
