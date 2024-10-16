@@ -31,7 +31,11 @@ const getContainerCoords = (
   const containerBoundingRect = container.getBoundingClientRect();
   return {
     x: pageX - containerBoundingRect.left + container.scrollLeft,
-    y: pageY - containerBoundingRect.top + container.scrollTop - window.scrollY,
+    y:
+      pageY -
+      containerBoundingRect.top +
+      container.scrollTop -
+      (window ? window.scrollY : 0),
   };
 };
 

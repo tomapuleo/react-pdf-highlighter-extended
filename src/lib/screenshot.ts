@@ -22,7 +22,7 @@ const getAreaAsPng = (canvas: HTMLCanvasElement, position: LTWH): string => {
     return "";
   }
 
-  const dpr: number = window.devicePixelRatio;
+  const dpr: number = window ? window.devicePixelRatio : 0;
 
   newCanvasContext.drawImage(
     canvas,

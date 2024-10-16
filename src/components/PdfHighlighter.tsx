@@ -252,11 +252,13 @@ export const PdfHighlighter = forwardRef<
   const searchTermHilightClassName = "search-term-highlight";
 
   const removeSearchTermHighlights = () => {
-    const spans = document.querySelectorAll(`.${searchTermHilightClassName}`);
+    if (document) {
+      const spans = document.querySelectorAll(`.${searchTermHilightClassName}`);
 
-    spans.forEach((span) => {
-      span.replaceWith(span.textContent || "");
-    });
+      spans.forEach((span) => {
+        span.replaceWith(span.textContent || "");
+      });
+    }
   };
 
   const fixHilightingSearchTerms = () => {
@@ -266,6 +268,8 @@ export const PdfHighlighter = forwardRef<
 
     if (!searchOptions.searchTerms || searchOptions.searchTerms.length == 0)
       return;
+
+    if (!document) return;
 
     // just spans in pages that are actually loaded
     const spans = document.querySelectorAll(
