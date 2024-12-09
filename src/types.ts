@@ -91,7 +91,7 @@ export interface Highlight {
   id: string;
   content: Content;
   position: ScaledPosition;
-  isBookmark?: boolean;
+  type?: "bookmark" | "searchTerm" | "savedSearchTerm";
   customId?: string | number;
 }
 

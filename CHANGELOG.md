@@ -1,4 +1,11 @@
+# 9.0.0
+
+- Removed isBookmark from Highlight type
+- Added property to Highlight - type?: "bookmark" | "searchTerm" | "savedSearchTerm"
+- Changed searchOptions.searchTerms from an string[] to an object with an optional hex color
+
 # 8.0.0
+
 - Added safety check to `onProgress` hook in `PdfLoader` to prevent potential races and resets to loading state after a PDF has been loaded in. #1 Thank you @orausch ❤.
 - Removed `MouseSelectionRenderer` and moved any necessary logic into `MouseSelection`.
 - Removed `TipRenderer` and moved any necessary logic into `TipContainer`.
@@ -17,7 +24,7 @@
 - Updated usage examples
 - Updated dependencies.
 
-*NOTE: This was labelled 7.1.0 originally, but since backward compatibility is broken, the version number is being updated to be semantically corect.*
+_NOTE: This was labelled 7.1.0 originally, but since backward compatibility is broken, the version number is being updated to be semantically corect._
 
 # 7.0.0
 

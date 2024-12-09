@@ -167,7 +167,13 @@ export interface PdfHighlighterProps {
    * is rendered
    */
   searchOptions?: {
-    searchTerms?: string[];
+    searchTerms?: {
+      term: string;
+      /**
+       * Hex color without the pound sign, like "FDFDDB", not "#FDFDDB"
+       */
+      hexColor?: string;
+    }[];
     wholeWordsOnly?: boolean;
   };
 
@@ -280,16 +286,24 @@ export const PdfHighlighter = forwardRef<
       // this is initially just text
       let html = span.textContent || "";
 
-      searchOptions.searchTerms!.forEach((term) => {
+      searchOptions.searchTerms!.forEach((item) => {
         // if the text contains the search term
-        if (html.toLowerCase().indexOf(term.toLowerCase()) > -1) {
+        if (html.toLowerCase().indexOf(item.term.toLowerCase()) > -1) {
+          // escape characters that would intefere with RegExp
+          const escapedTerm = (item.term || "").replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&",
+          );
+
           const rgx = searchOptions.wholeWordsOnly
-            ? new RegExp(`(\\b${term}\\b)`, "gi")
-            : new RegExp(`(${term})`, "gi");
+            ? new RegExp(`(\\b${escapedTerm}\\b)`, "gi")
+            : new RegExp(`(${escapedTerm})`, "gi");
 
           html = html.replace(
             rgx,
-            `<span class="${searchTermHilightClassName}">$1</span>`,
+            item.hexColor
+              ? `<span style="background-color:#${item.hexColor}" class="${searchTermHilightClassName}">$1</span>`
+              : `<span class="${searchTermHilightClassName}">$1</span>`,
           );
 
           if (html) {

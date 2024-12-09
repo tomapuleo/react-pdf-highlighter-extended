@@ -89,7 +89,7 @@ const App = () => {
   const addHighlight = (highlight: GhostHighlight, comment: string) => {
     console.log("Saving highlight", highlight);
     setHighlights([
-      { ...highlight, comment, id: getNextId(), isBookmark: true },
+      { ...highlight, comment, id: getNextId(), type: "bookmark" },
       ...highlights,
     ]);
   };
@@ -223,7 +223,11 @@ const App = () => {
                 height: "calc(100% - 41px)",
               }}
               searchOptions={{
-                searchTerms,
+                searchTerms: searchTerms.map((term) => {
+                  return {
+                    term,
+                  };
+                }),
                 wholeWordsOnly,
               }}
               onPageChange={setCurrentPageNumber}
