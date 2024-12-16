@@ -173,6 +173,7 @@ export interface PdfHighlighterProps {
        * Hex color without the pound sign, like "FDFDDB", not "#FDFDDB"
        */
       hexColor?: string;
+      ignoreWholeWordsOnly?: boolean;
     }[];
     wholeWordsOnly?: boolean;
   };
@@ -295,9 +296,10 @@ export const PdfHighlighter = forwardRef<
             "\\$&",
           );
 
-          const rgx = searchOptions.wholeWordsOnly
-            ? new RegExp(`(\\b${escapedTerm}\\b)`, "gi")
-            : new RegExp(`(${escapedTerm})`, "gi");
+          const rgx =
+            searchOptions.wholeWordsOnly && !item.ignoreWholeWordsOnly
+              ? new RegExp(`(\\b${escapedTerm}\\b)`, "gi")
+              : new RegExp(`(${escapedTerm})`, "gi");
 
           html = html.replace(
             rgx,

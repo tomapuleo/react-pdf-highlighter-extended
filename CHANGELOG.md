@@ -1,3 +1,7 @@
+# 9.0.1
+
+- added ignoreWholeWordsOnly on a search term so you can opt out of wholdWordsOnly for a search term
+
 # 9.0.0
 
 - Removed isBookmark from Highlight type
