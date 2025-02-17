@@ -304,7 +304,7 @@ export const PdfHighlighter = forwardRef<
           html = html.replace(
             rgx,
             item.hexColor
-              ? `<span style="background-color:#${item.hexColor}" class="${searchTermHilightClassName}">$1</span>`
+              ? `<span style="background-color:#${item.hexColor}" data-search-term class="${searchTermHilightClassName}">$1</span>`
               : `<span class="${searchTermHilightClassName}">$1</span>`,
           );
 

@@ -17,6 +17,19 @@ Highlight now has a type with 3 options, removing the isBookmark property.
 
 ```
   /**
+  * 02.17.2025 - added data-search-term attribute to found search terms with hexColor specified
+  */
+  searchOptions?: {
+    searchTerms?: {
+      term: string;
+      hexColor?: string;
+    }[];
+    wholeWordsOnly?: boolean;
+  };
+```
+
+```
+  /**
   * 12.9.2024 - changed searchOptions to add an optional hexColor that will be used for highlighting
   */
   searchOptions?: {
