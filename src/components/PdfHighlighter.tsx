@@ -54,7 +54,6 @@ import { MouseSelection } from "./MouseSelection";
 import { TipContainer } from "./TipContainer";
 
 const SCROLL_MARGIN = 10;
-const SELECTION_DELAY = 250; // Debounce wait time in milliseconds for a selection changing to be registered
 const DEFAULT_SCALE_VALUE = "auto";
 const DEFAULT_TEXT_SELECTION_COLOR = "rgba(153,193,218,255)";
 
@@ -363,7 +362,7 @@ export const PdfHighlighter = forwardRef<
 
     eventBusRef.current.on("textlayerrendered", renderHighlightLayers);
     eventBusRef.current.on("pagesinit", handleScaleValue);
-    doc.addEventListener("selectionchange", debouncedHandleSelectionChange);
+    doc.addEventListener("mouseup", handleSelectionMouseUp);
     doc.addEventListener("keydown", handleKeyDown);
     containerNodeRef.current.addEventListener(
       "scroll",
@@ -379,10 +378,7 @@ export const PdfHighlighter = forwardRef<
     return () => {
       eventBusRef.current.off("pagesinit", handleScaleValue);
       eventBusRef.current.off("textlayerrendered", renderHighlightLayers);
-      doc.removeEventListener(
-        "selectionchange",
-        debouncedHandleSelectionChange,
-      );
+      doc.removeEventListener("mouseup", handleSelectionMouseUp);
       doc.removeEventListener("keydown", handleKeyDown);
       containerNodeRef.current?.removeEventListener("scroll", () => {});
       resizeObserverRef.current?.disconnect();
@@ -395,7 +391,7 @@ export const PdfHighlighter = forwardRef<
     scrolledToHighlightIdRef.current = null;
   };
 
-  const debouncedHandleSelectionChange = debounce(() => {
+  const handleSelectionMouseUp = () => {
     const container = containerNodeRef.current;
     const selection = getWindow(container).getSelection();
 
@@ -448,7 +444,7 @@ export const PdfHighlighter = forwardRef<
 
     selectionTip &&
       setTip({ position: viewportPosition, content: selectionTip });
-  }, SELECTION_DELAY);
+  };
 
   const handleMouseDown: PointerEventHandler = (event) => {
     if (

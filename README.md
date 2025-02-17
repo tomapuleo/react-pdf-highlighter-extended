@@ -7,17 +7,13 @@
 
 This originally started as a fork of [`react-pdf-highlighter`](https://github.com/agentcooper/react-pdf-highlighter) but so much has been refactored and redesigned that it would be a burden to pull it to the original repo. Some of these changes include: addition of `HighlightContext`, `PdfHighlighterContext`, and `MonitoredHighlightContainer`; zoom support; exposed styling on all components; and numerous bugfixes. Efforts will be made to try to ensure feature parity with the original repo, but there are no guarantees that syntax and usage will be the same.
 
-12.09.2024
-
-PLEASE DO NOT DEPEND ON THIS PACKAGE FOR YOUR PRODUCION APPS
-THIS IS SOMETHING THAT I'M STILL PLAYING WITH AND IT IS NOT
-MEANT FOR SERIOUS PUBLIC CONSUMPTION
-
-Highlight now has a type with 3 options, removing the isBookmark property.
+02.17.2025
 
 ```
   /**
-  * 02.17.2025 - added data-search-term attribute to found search terms with hexColor specified
+  * added data-search-term attribute to found search terms with hexColor specified
+  * also changed mouse selection end to be on mouseup so user can take their time
+  * making a selection
   */
   searchOptions?: {
     searchTerms?: {
@@ -27,6 +23,14 @@ Highlight now has a type with 3 options, removing the isBookmark property.
     wholeWordsOnly?: boolean;
   };
 ```
+
+12.09.2024
+
+PLEASE DO NOT DEPEND ON THIS PACKAGE FOR YOUR PRODUCION APPS
+THIS IS SOMETHING THAT I'M STILL PLAYING WITH AND IT IS NOT
+MEANT FOR SERIOUS PUBLIC CONSUMPTION
+
+Highlight now has a type with 3 options, removing the isBookmark property.
 
 ```
   /**
